@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <string.h>
 #include <cstddef>
 #include <sstream>
 using namespace std;
@@ -7,22 +8,20 @@ int main (){
     string str;
     string aux;
     stringstream ss;
-    cin>>str;
+    size_t found;
+    getline(cin,str);
     ss<<str ;
+     
+    while(ss>>aux){
 
-    while (ss >> aux){
-        size_t found = str.rfind(aux);
-        
-        if(found!=string::npos){
-            for(size_t i=0;aux.size();i++){
-              aux[i]=toupper(aux[i]);
+        found = str.find(aux);
+        if(found!=string::npos && aux.size()>1){
+            for(size_t i=0;i<aux.size();i++){
+                aux[i]=toupper(aux[i]);
             }
-            cout<<aux<<endl;
-          str.replace(found,aux.length(),aux);
-          cout << str << '\n';
-        }else{}
-    
-    }
-  
+            str.replace(found,aux.size(),aux);
+        }
+    }    
+    cout << str << endl;
 }
 

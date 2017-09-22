@@ -96,18 +96,18 @@ bool anagrama(string str2, string str3){
 void palavraContida_palavra(string str){
     string aux;
     stringstream ss;
+    size_t found;
     ss<<str ;
+     
+    while(ss>>aux){
 
-    while (ss >> aux){
-        size_t found = str.rfind(aux);
-        for(size_t i=0;aux.size();i++){
-            aux[i]+=32;
+        found = str.find(aux);
+        if(found!=string::npos && aux.size()>1){
+            for(size_t i=0;i<aux.size();i++){
+                aux[i]=toupper(aux[i]);
+            }
+            str.replace(found,aux.size(),aux);
         }
-        if(found!=string::npos){
-        str.replace(found,aux.length(),aux);
-        cout << str << '\n';
-        }else{}
-    
-    }
-  
+    }    
+    cout << str << endl;
 }
